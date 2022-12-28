@@ -22,33 +22,44 @@ class _MyWidgetState extends State<MyWidget> {
         title: Text("Lab05"),
       ),
       body: Form(
-        key:_formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _cotroller1,
-              validator: ((value) {
+        key: _formKey,
+        child: Column(children: [
+          TextFormField(
+              controller: _cotroller2,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email),
+                labelText: 'Email',
+              ),
+              validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Enter some text';
+                  return "Enter text";
                 }
                 return null;
-              },
+              }),
+          TextFormField(
+              controller: _cotroller1,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.password),
                 labelText: 'Password',
               ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    print(_cotroller1.text);
-                    print(_cotroller2.text);
-                  }
-                },
-                child: Text('Submit'),
-          ],
-        ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Enter text";
+                }
+                return null;
+              }),
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                print(_cotroller1.text);
+                print(_cotroller2.text);
+              }
+            },
+            child: Text('Submit'),
+          )
+        ]),
       ),
     );
   }
